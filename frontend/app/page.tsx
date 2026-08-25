@@ -1,69 +1,97 @@
+import Link from "next/link";
+import DestinationSection from "@/components/DestinationSection";
+import { destinations } from "@/data/destination";
 import Image from "next/image";
 
 export default function Home() {
+  const india = destinations.filter((d) => d.category === "india"),
+    international = destinations.filter((d) => d.category === "international");
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <>
+      <section className="relative min-h-195 overflow-hidden bg-ink text-white">
         <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+          src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1"
+          alt="Mountain lake landscape"
+          width={1400}
+          height={800}
+          className="absolute inset-0 h-full w-full object-cover opacity-55"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+        <div className="absolute inset-0 bg-gradient-to-right from-ink via-ink/60 to-transparent" />
+        <div className="relative mx-auto flex min-h[780px] max-w-7xl items-end px-5 pb-20 pt-32 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-orange-200">
+              Travel Unbounded · Experiential travel
+            </p>
+            <h1 className="font-display text-6xl leading-[0.95] tracking-tight md:text-8xl">
+              Go beyond the <span className="text-orange-200">itinerary.</span>
+            </h1>
+            <p className="mt-7 max-w-xl text-lg leading-8 text-white/80">
+              Journeys built around people, culture and unforgettable
+              experiences — from the quietest corners of India to the wildest
+              landscapes abroad.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-8 inline-flex rounded-full bg-terracotta px-7 py-4 font-semibold hover:opacity-90"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Plan your trip <span className="ml-2">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+      <DestinationSection
+        eyebrow="Made in India"
+        title="Journeys closer to home"
+        destinations={india}
+      />
+      <section className="mx-5 overflow-hidden rounded-2rem bg-sage text-white lg:mx-auto lg:max-w-7xl">
+        <div className="grid items-center lg:grid-cols-2">
+          <div className="p-8 md:p-14">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70">
+              Why travel with us
+            </p>
+            <h2 className="mt-3 font-display text-4xl md:text-5xl">
+              The best trips leave room for the unexpected.
+            </h2>
+            <p className="mt-5 leading-7 text-white/80">
+              We combine thoughtful planning with local perspective, so your
+              trip feels personal rather than packaged.
+            </p>
+            <Link
+              href="/about"
+              className="mt-7 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              Meet Travel Unbounded
+            </Link>
+          </div>
+          <Image
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=80"
+            alt="Mountain adventure"
+            className="h-full min-h-80 w-full object-cover"
+            width={1400}
+            height={800}
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+      <DestinationSection
+        eyebrow="Beyond borders"
+        title="Go further"
+        destinations={international}
+      />
+      <section className="bg-sand px-5 py-20 text-center lg:px-8">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">
+          Your next chapter
+        </p>
+        <h2 className="mx-auto mt-3 max-w-3xl font-display text-5xl text-ink md:text-6xl">
+          Tell us where you want to go. We’ll help you figure out how.
+        </h2>
+        <Link
+          href="/contact"
+          className="mt-8 inline-flex rounded-full bg-ink px-7 py-4 font-semibold text-white hover:bg-sage"
+        >
+          Start planning
+        </Link>
+      </section>
+    </>
   );
 }
