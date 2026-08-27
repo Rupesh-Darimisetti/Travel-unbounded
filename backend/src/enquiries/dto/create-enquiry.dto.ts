@@ -19,11 +19,13 @@ export class CreateEnquiryDto {
 
   @IsString()
   @IsNotEmpty()
-  @Matches(/^[0-9\s().-]{7-18}$/, { message: 'Enter a valid phone number' })
+  @Matches(/^[0-9\s().-]{7,18}$/, { message: 'Enter a valid phone number' })
   contactNumber!: string;
 
   @IsString()
-  @Matches(/^\+d{1,4}$/, { message: 'Enter a valid country code' })
+  @Matches(/\+\b[1429]{1}\d{0,2}\b/, {
+    message: 'Enter a valid country code',
+  })
   countryCode!: string;
 
   @IsEmail({}, { message: 'Enter a valid email address' })
@@ -36,9 +38,9 @@ export class CreateEnquiryDto {
   @Type(() => Number)
   @IsInt()
   @Min(1, { message: 'Number of travellers must be at least 1' })
-  numberOfTravellers!: number;
+  numberOfPeople!: number;
 
-  @IsIn(['Standard', 'Delux', 'Luxury'], {
+  @IsIn(['Standard', 'Deluxe', 'Luxury'], {
     message: 'Select a valid hotel category',
   })
   hotelCategory!: string;

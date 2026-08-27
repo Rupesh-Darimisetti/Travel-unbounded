@@ -8,7 +8,7 @@ import { CreateEnquiryDto } from './dto/create-enquiry.dto';
 export class EnquiriesService {
   constructor(
     @InjectModel(Enquiry.name)
-    private readonly enquiryModel: Model<EnquiryDocument>,
+    private enquiryModel: Model<EnquiryDocument>,
   ) {}
 
   async create(dto: CreateEnquiryDto) {

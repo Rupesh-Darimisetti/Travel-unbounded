@@ -26,7 +26,7 @@ export class Enquiry {
   @Prop({ required: true, min: 1 })
   numberOfPeople!: number;
 
-  @Prop({ required: true, enum: ['Standard', 'Delux', 'Luxury'] })
+  @Prop({ required: true, enum: ['Standard', 'Deluxe', 'Luxury'] })
   hotelCategory!: string;
 
   @Prop({ required: true, min: 0, default: 0 })

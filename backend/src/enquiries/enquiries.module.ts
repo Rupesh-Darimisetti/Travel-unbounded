@@ -15,5 +15,6 @@ import { EnquiriesController } from './enquiries.controller';
   ],
   controllers: [EnquiriesController],
   providers: [EnquiriesService],
+  exports: [EnquiriesService],
 })
 export class EnquiriesModule {}

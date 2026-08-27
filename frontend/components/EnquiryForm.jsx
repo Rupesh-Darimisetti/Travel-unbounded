@@ -45,7 +45,7 @@ export default function EnquiryForm() {
         setMessage("");
         try {
             const res =
-                await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://localhost:4000"}/api/enquiries/enquiry`,
+                await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"}/api/enquiries/enquiry`,
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },

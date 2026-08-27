@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-// import { EnquiriesModule } from './enquiries/enquiries.module';
+import { EnquiriesModule } from './enquiries/enquiries.module';
 
 @Module({
   imports: [
@@ -12,16 +12,18 @@ import { MongooseModule } from '@nestjs/mongoose';
     // 2. Asynchronously connect to MongoDB once ConfigService is ready
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (config: ConfigService) => ({
-        uri: config.get('MONGODB_URI'),
-        // tls: false,
-        // ssl: false,
-      }),
+      useFactory: (config: ConfigService) => {
+        const uri = config.get<string>('MONGODB_URI');
+        if (!uri) {
+          throw new Error('MONGODB_URI is missing from environment');
+        }
+        return { uri };
+      },
       inject: [ConfigService],
     }),
 
     // MongooseModule.forRoot(process.env.MONGODB_URI!),
-    // EnquiriesModule,
+    EnquiriesModule,
   ],
 })
 export class AppModule {}
