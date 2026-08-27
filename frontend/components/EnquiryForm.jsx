@@ -44,11 +44,13 @@ export default function EnquiryForm() {
         setStatus("loading");
         setMessage("");
         try {
-            const res = await fetch("/api/enquiry", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
-            });
+            const res =
+                await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://localhost:4000"}/api/enquiries/enquiry`,
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(form),
+                    });
             const data = await res.json();
             if (!res.ok) {
                 setErrors(data.errors || {});
@@ -158,14 +160,14 @@ export default function EnquiryForm() {
             </div>
             <button
                 disabled={status === "loading"}
-                className="mt-6 w-full rounded-full bg-ink px-6 py-4 font-semibold text-white transition hover:bg-sage disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-6 w-full rounded-full bg-green-500 px-6 py-4 font-semibold text-white transition hover:bg-sage disabled:cursor-not-allowed disabled:opacity-60"
             >
                 {status === "loading" ? "Submitting…" : "Submit enquiry"}
             </button>
             {status === "success" && (
                 <div
                     role="status"
-                    className="mt-4 rounded-2xl bg-emerald-50 p-4 text-sm text-emerald-800"
+                    className="mt-4 rounded-2xl bg-emerald-50 p-4  text-sm text-emerald-800"
                 >
                     ✓ {message}
                     <br />
